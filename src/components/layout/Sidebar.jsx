@@ -1,15 +1,20 @@
+import {MdMenuOpen} from "react-icons/md"
 import Button from "../ui/Button.jsx";
 function Sidebar(){
+
     return(
-        <nav className="shadow-md h-screen w-60 bg-blue-700">
-            <div className="p-4 pb-2 flex justify-between items-center">
+        <nav className="shadow-md h-screen w-60 bg-blue-0">
+            <div className="border px-3 py-2 h-20 flex justify-between items-center">
                 <img
-                    src="../../assets/"
-                    className="w-32"
+                    src="./src/assets/Tailwind.png"
+                    className="w-10 rounded-md"
                     alt=""
                 />
-                <Button text="voltar"/>
+                <MdMenuOpen size={30} className="cursor-pointer"/>
+                
             </div>
+            <Button  variant="secondary" text="voltar"/>
+            <Button                      text="voltar2"/>
         </nav>
     
     );
