@@ -14,7 +14,7 @@ function Sidebar(){
                 
             </div>
             <Button  variant="secondary" text="voltar"/>
-            <Button                      text="voltar2"/>
+            <Button                      text="voltar"/>
         </nav>
     
     );
