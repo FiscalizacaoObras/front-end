@@ -16,7 +16,7 @@ function ErrorCeate() {
                     <div>
                         <Button text="Tentar novamente" />
                     </div>
-                </div>
+                </div>X
             </>
         )
     }
