@@ -1,16 +1,14 @@
-import React from "react";
-import Sidebar from "./components/layout/Sidebar";
+import AppRoutes from "./routes/Routes";
 
 function App() {
 
   return (
     <>
-      <Sidebar/>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <div>
+        <AppRoutes />
+      </div> 
     </>
-  )
+  );
 }
 
 export default App;
