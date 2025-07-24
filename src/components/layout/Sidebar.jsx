@@ -25,28 +25,34 @@ function Sidebar(){
     const MenuTemplates = [
         {
             icons:<FiFileText size={iconSize}/>,
+            to:"/view",
             label:'Visualizar'
         },
         {
             icons:<FiFilePlus size={iconSize}/>,
+            to:"",
             label:'Adcionar/criar'
         },
         {
             icons:<LuFilePen size={iconSize}/>,
+            to:"",
             label:'Editar'
         },
         {
             icons:<LuFileX size={iconSize}/>,
+            to:"",
             label:'Excluir'
         }
     ];
     const MenuConfig =[
         {
             icons:<FiUser size={iconSize}/>,
+            to:"/login",
             label:'Usuario'
         },
         {
             icons:<IoExitOutline size={iconSize}/>,
+            to:"",
             label:'Sair'
         }
     ];
@@ -91,9 +97,11 @@ function Sidebar(){
                 {
                     MenuTemplates.map((item,index)=>{
                         return(
-                            <li key={index} className="px-3 py-2 hover:bg-rose-500/25 rounded-md duration-300 cursor-pointer flex gap-2">
-                                <div>{item.icons}</div>
-                                <p className={`${!open && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>{item.label}</p>
+                            <li key={index} className="px-3 py-2 hover:bg-rose-500/25 rounded-md duration-300 cursor-pointer">
+                               <Link to={item.to} className="flex items-center gap-2">
+                                    <div>{item.icons}</div>
+                                    <p className={`${!open && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>{item.label}</p>
+                                </Link>
                             </li>
                         )
                     })
@@ -102,11 +110,7 @@ function Sidebar(){
             <br/>
             <ul>
                 {open &&(
-                    <div className="">
-                        <Link to="/register">
-                            <h4 className="text-gray-500 px-3">Configurações</h4>
-                        </Link>
-                    </div>
+                    <h4 className="text-gray-500 px-3">Configurações</h4>
                 )}
                 {!open &&(
                     <h4 className="text-gray-500 px-2">Config</h4>
@@ -114,9 +118,11 @@ function Sidebar(){
                 {
                     MenuConfig.map((item,index)=>{
                         return(
-                            <li key={index} className="px-3 py-2 hover:bg-rose-500/25 rounded-md duration-300 cursor-pointer flex gap-2">
-                                <div>{item.icons}</div>
-                                <p className={`${!open && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>{item.label}</p>
+                            <li key={index} className="px-3 py-2 hover:bg-rose-500/25 rounded-md duration-300 cursor-pointer">
+                                <Link to={item.to} className="flex items-center gap-2">
+                                    <div>{item.icons}</div>
+                                    <p className={`${!open && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>{item.label}</p>
+                                </Link>
                             </li>
                         )
                     })
