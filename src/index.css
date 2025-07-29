@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+:root {
+    --vinho-primario: #572023;
+    --vinho-secundario: #602E31;
+}
