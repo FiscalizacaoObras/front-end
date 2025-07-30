@@ -1,4 +1,6 @@
 import React from "react";
+import { FiHome } from "react-icons/fi";
+import { BsPlusLg } from "react-icons/bs";
 
 function Ceate({ isOpen }) {
 
@@ -6,13 +8,13 @@ function Ceate({ isOpen }) {
         return (
             <>
                 <div>
-                    <button> <IoClose /> </button>
+                    <button className="cursor-pointer"> <IoClose /> </button>
                     <BsCheckCircleFill />
                     <h2>Template criado com sucesso!</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div>
-                        <Button text="Voltar ao início" />
-                        <Button text="Criar outro template" />
+                        <Button icon={ <FiHome /> } text="Voltar ao início" />
+                        <Button icon={ <BsPlusLg /> } text="Criar outro template" />
                     </div>
                 </div>
             </>
@@ -21,5 +23,5 @@ function Ceate({ isOpen }) {
 
     return null;
 }
-
+ 
 export default Ceate;

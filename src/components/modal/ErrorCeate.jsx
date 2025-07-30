@@ -1,20 +1,21 @@
 import React from "react";
 import Buttom from "../ui/Button";
 import { BsExclamationCircleFill } from "react-icons/bs";
-import {IoClose} from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
+import { FiRotateCw } from "react-icons/fi";
 
 function ErrorCeate() {
-    
-    if(isOpen) {
+
+    if (isOpen) {
         return (
             <>
                 <div>
-                    <button> <IoClose /> </button>
+                    <button className="cursor-pointer"> <IoClose /> </button>
                     <BsExclamationCircleFill />
                     <h2>Falha ao finalizar template</h2>
                     <p>Seu template não foi finalizado, tente novamente</p>
                     <div>
-                        <Button text="Tentar novamente" />
+                        <Button icon={ <FiRotateCw /> } text="Tentar novamente" />
                     </div>
                 </div>X
             </>

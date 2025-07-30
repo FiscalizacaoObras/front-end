@@ -9,7 +9,7 @@ function Delete({isOpen}) {
         return (
             <>
                 <div>
-                    <button> <IoClose /> </button>
+                    <button className="cursor-pointer"> <IoClose /> </button>
                     <RiDeleteBin5Fill />
                     <h2>Tem certeza que deseja excluir esse template?</h2>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>

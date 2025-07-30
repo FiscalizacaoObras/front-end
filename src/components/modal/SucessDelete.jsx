@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../ui/Button";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
+import { FiHome } from "react-icons/fi";
 
 function SucessDelete({ isOpen }) {
 
@@ -9,12 +10,12 @@ function SucessDelete({ isOpen }) {
         return (
             <>
                 <div>
-                    <button> <IoClose /> </button>
+                    <button className="cursor-pointer"> <IoClose /> </button>
                     <BsCheckCircleFill />
                     <h2>Template excluído com sucesso!</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div>
-                        <Button text="Voltar ao início" />
+                        <Button icon={ <FiHome /> } text="Voltar ao início" />
                     </div>
                 </div>
             </>
