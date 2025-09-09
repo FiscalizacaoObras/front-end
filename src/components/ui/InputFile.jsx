@@ -15,10 +15,10 @@ export default function InputFile({text, onFileChange}) {
   }
 
   return (
-    <div className="flex flex-col w-full h-auto gap-0.5 mb-1">
-      <label className="inputfile-label block bg-[var(--vinho-primario)] text-[var(--primary-color)] text-sm font-normal cursor-pointer">
+    <div className="flex flex-col w-xs h-10 gap-0.5 mb-2 mt-2">
+      <label className="inputfile-label bg-[var(--vinho-primario)] text-[var(--primary-color)] shadow-md rounded-[60px] h-9 text-center text-sm font-normal cursor-pointer">
         {text}
-        <input type="file" accept="image/*" onChange={handleFileChange}  required/>
+        <input className="hidden" type="file" accept="image/*" onChange={handleFileChange}  required/>
       </label>
       {previewUrl && (
         <div className="preview-container">

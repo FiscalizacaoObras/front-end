@@ -53,11 +53,12 @@ function ShowCropp() {
   };
 
   return (
-  <div className="flex flex-col md:flex-row gap-5 p-10 bg-white rounded-[60px] shadow-md w-full h-full overflow-auto">
-    <div>
-      <div className=" rounded-md shadow-lg w-full h-10 mb-5"><InputFile text="Escolha uma imagem"/></div>
+  <div className="flex flex-col md:flex-row gap-5 p-10  w-full h-full overflow-auto">
+
+    <div className="bg-white shadow-md rounded-[10px]">
+      <div className=""><InputFile text="Escolha uma imagem"/></div>
       <div className="relative flex-shrink-0 w-full md:w-[600px]">
-        <div className="relative w-full h-auto">
+        <div className="relative w-fit ml-2 mr-2 h-auto">
           <img
             src={l1Img}
             alt="gabarito"
@@ -85,29 +86,31 @@ function ShowCropp() {
     </div>
     
 
-    <div className="flex-1 overflow-auto max-h-[80vh]">
-      {croppsData.map((crop) => (
-        <div
-          className={`mb-2 p-3 border-l-4 rounded-md flex items-center gap-3 transition-all duration-200 ${
-            hoveredIndex === crop.index
-              ? "bg-white text-cyan-700 font-bold text-sm"
-              : "bg-transparent"
-          }`}
-          key={`label-${crop.index}`}
-          id={`label-${crop.index}`}
-        >
-          <input
-            type="checkbox"
-            id={`checkbox-${crop.index}`}
-            checked={!hiddenCropps[crop.index]}
-            onChange={() => toggleVisibility(crop.index)}
-            className="transform scale-110 cursor-pointer"
-          />
-          <label htmlFor={`checkbox-${crop.index}`} className="text-sm cursor-pointer">
-            TEMPLATE: {crop.templateName} | NAME: {crop.name} | X: {crop.x} | Y: {crop.y} | W: {crop.width} | H: {crop.height}
-          </label>
-        </div>
-      ))}
+    <div className="bg-white pt-5 pl-2 pr-2 w-full shadow-md rounded-[10px] ml-2 mr-2">
+      <div className="flex-1 overflow-auto max-h-[80vh]">
+        {croppsData.map((crop) => (
+          <div
+            className={`mb-2 p-3 border-l-4 rounded-md flex items-center gap-3 transition-all duration-200 ${
+              hoveredIndex === crop.index
+                ? "bg-white text-cyan-700 font-bold text-sm"
+                : "bg-transparent"
+            }`}
+            key={`label-${crop.index}`}
+            id={`label-${crop.index}`}
+          >
+            <input
+              type="checkbox"
+              id={`checkbox-${crop.index}`}
+              checked={!hiddenCropps[crop.index]}
+              onChange={() => toggleVisibility(crop.index)}
+              className="transform scale-110 cursor-pointer"
+            />
+            <label htmlFor={`checkbox-${crop.index}`} className="text-sm cursor-pointer">
+              TEMPLATE: {crop.templateName} | NAME: {crop.name} | X: {crop.x} | Y: {crop.y} | W: {crop.width} | H: {crop.height}
+            </label>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );

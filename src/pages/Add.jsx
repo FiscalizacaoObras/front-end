@@ -40,6 +40,7 @@ function Add() {
                     <div>
                         <TitlePage Title="Criar template" />
                     </div>
+                    <br/>
                     <div className="flex gap-x-5">
                         <div className="bg-white rounded-md shadow-lg w-80 mb-2 mt-2 p-4 flex flex-col gap-4">
                             <h1 className="text-xl font-bold">Nome do Template</h1>
