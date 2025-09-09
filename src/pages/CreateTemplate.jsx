@@ -1,6 +1,6 @@
 import React from "react";
 
-function UploadDocument() {
+function CreateTemplate() {
     
     return (
         <>
@@ -8,4 +8,4 @@ function UploadDocument() {
     );
 }
 
-export default UploadDocument;
+export default CreateTemplate;
