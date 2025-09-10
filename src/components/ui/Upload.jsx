@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { InboxOutlined, DeleteOutlined, CheckOutlined } from '@ant-design/icons';
 import { FiUploadCloud } from "react-icons/fi";
-import { message, Input, Tooltip, Checkbox } from 'antd';
+import { message, Input, Tooltip, Checkbox, Button } from 'antd';
 
 function Upload() {
     const [pdfList, setPdfList] = useState([]);
-    const [mostrarSelecao, setMostrarSelecao] = useState(false);
     const [nomeSelecao, setNomeSelecao] = useState(() => {
         return localStorage.getItem('nomeSelecao') || '';
     });

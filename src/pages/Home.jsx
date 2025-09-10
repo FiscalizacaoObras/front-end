@@ -1,12 +1,12 @@
 import Sidebar from "../components/layout/Sidebar";
 import TitlePage from "../components/layout/TitlePage";
-import Upload from "../components/ui/Upload";
+import NewCropp from "../components/layout/NewCropp";
 
 function Home() {
 
     return (
         <>
-            <Upload />
+            <NewCropp/>
         </>
     );
 
