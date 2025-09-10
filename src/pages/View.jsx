@@ -12,7 +12,6 @@ function View(){
                     <div>
                         <TitlePage Title="Criar template" />
                     </div>
-                    <br/>
                     <ShowCropp />
                 </main>
             </div>

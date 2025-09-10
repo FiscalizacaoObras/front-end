@@ -7,6 +7,7 @@ function ShowCropp() {
   const [croppsData, setCroppsData] = useState([]);
   const [hiddenCropps, setHiddenCropps] = useState({});
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
 
   const imgRef = useRef(null);
 
@@ -14,36 +15,43 @@ function ShowCropp() {
     const img = imgRef.current;
 
     const onLoad = () => {
-        const scale = img.width / img.naturalWidth;
+      if (!img) return;
+
+      setTimeout(()=>{
+        const scaleX = img.clientWidth / img.naturalWidth;
+        const scaleY = img.clientHeight / img.naturalHeight;
+
         const cropps = [];
         const hiddenInit = {};
 
         croppsJson.template.forEach((item, templateIndex) => {
-            if (item.TemplateName !== "temp1") return;
+          if (item.TemplateName !== "temp1") return;
 
-            item.cropps.forEach((crop, cropIndex) => {
-                const index = `${templateIndex}-${cropIndex}`;
-                cropps.push({
-                    index,
-                    ...crop,
-                    scale,
-                    templateName: item.TemplateName,
-                });
-            hiddenInit[index] = true;
+          item.cropps.forEach((crop, cropIndex) => {
+            const index = `${templateIndex}-${cropIndex}`;
+            cropps.push({
+              index,
+              ...crop,
+              scaleX,
+              scaleY,
+              templateName: item.TemplateName,
             });
-  });
+            hiddenInit[index] = true;
+          });
+        });
 
-  setCroppsData(cropps);
-  setHiddenCropps(hiddenInit);
-};
+        setCroppsData(cropps);
+        setHiddenCropps(hiddenInit);
+      }, 50);
+    };
 
-    if (img.complete) {
+    if (img && img.complete) {
       onLoad();
-    } else {
+    } else if (img) {
       img.addEventListener("load", onLoad);
       return () => img.removeEventListener("load", onLoad);
     }
-  }, []);
+  }, [previewUrl]);
 
   const toggleVisibility = (index) => {
     setHiddenCropps((prev) => ({
@@ -53,14 +61,16 @@ function ShowCropp() {
   };
 
   return (
-  <div className="flex flex-col md:flex-row gap-5 p-10  w-full h-full overflow-auto">
+  <div className="flex flex-col md:flex-row gap-5 p-10 w-full h-full overflow-auto">
 
-    <div className="bg-white shadow-md rounded-[10px]">
-      <div className=""><InputFile text="Escolha uma imagem"/></div>
+    <div className="bg-white shadow-md h-screen rounded-[10px]">
+      <div className="flex justify-center mb-4">
+        <InputFile text="Escolha uma imagem" onFileChange={setPreviewUrl}/>
+      </div>
       <div className="relative flex-shrink-0 w-full md:w-[600px]">
         <div className="relative w-fit ml-2 mr-2 h-auto">
           <img
-            src={l1Img}
+            src={previewUrl || l1Img}
             alt="gabarito"
             ref={imgRef}
             className="w-full h-auto rounded-md"
@@ -73,10 +83,10 @@ function ShowCropp() {
               onMouseEnter={() => setHoveredIndex(crop.index)}
               onMouseLeave={() => setHoveredIndex(null)}
               style={{
-                left: crop.x * crop.scale + "px",
-                top: crop.y * crop.scale + "px",
-                width: crop.width * crop.scale + "px",
-                height: crop.height * crop.scale + "px",
+                left: crop.x * crop.scaleX + "px",
+                top: crop.y * crop.scaleY + "px",
+                width: crop.width * crop.scaleX + "px",
+                height: crop.height * crop.scaleY + "px",
                 display: hiddenCropps[crop.index] ? "none" : "block",
               }}
             ></div>
@@ -86,11 +96,11 @@ function ShowCropp() {
     </div>
     
 
-    <div className="bg-white pt-5 pl-2 pr-2 w-full shadow-md rounded-[10px] ml-2 mr-2">
-      <div className="flex-1 overflow-auto max-h-[80vh]">
+    <div className="bg-white pt-5 w-full h-screen shadow-md rounded-[10px]">
+      <div className="flex-1 overflow-auto h-full">
         {croppsData.map((crop) => (
           <div
-            className={`mb-2 p-3 border-l-4 rounded-md flex items-center gap-3 transition-all duration-200 ${
+            className={`mb-2 p-3 rounded-md flex w-full items-center gap-3 transition-all duration-200 ${
               hoveredIndex === crop.index
                 ? "bg-white text-cyan-700 font-bold text-sm"
                 : "bg-transparent"
@@ -105,7 +115,7 @@ function ShowCropp() {
               onChange={() => toggleVisibility(crop.index)}
               className="transform scale-110 cursor-pointer"
             />
-            <label htmlFor={`checkbox-${crop.index}`} className="text-sm cursor-pointer">
+            <label htmlFor={`checkbox-${crop.index}`} className="text-sm w-full break-words cursor-pointer">
               TEMPLATE: {crop.templateName} | NAME: {crop.name} | X: {crop.x} | Y: {crop.y} | W: {crop.width} | H: {crop.height}
             </label>
           </div>
