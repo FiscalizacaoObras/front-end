@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { message, Input, Tooltip, Checkbox } from 'antd';
+import { InboxOutlined, DeleteOutlined, CheckOutlined } from '@ant-design/icons';
 import Upload from "../ui/Upload";
 import Button from "../ui/Button";
 
 function NewCropp(){
+    const [pdfList, setPdfList] = useState([]);
     const [mostrarSelecao, setMostrarSelecao] = useState(false);
     
     

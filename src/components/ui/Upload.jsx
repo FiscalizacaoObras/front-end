@@ -37,6 +37,11 @@ function Upload() {
 
         setPdfList((prev) => [...prev, ...newPDFs]);
     };
+    const handleChange = (index, field, value) => {
+        const updatedList = [...pdfList];
+        updatedList[index][field] = value;
+        setPdfList(updatedList);
+    };
 
     return (
         <div className="flex flex-col gap-5 p-10 w-3/4 h-1/2 mx-auto shadow-2xl rounded-2xl">
