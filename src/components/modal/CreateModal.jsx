@@ -6,22 +6,22 @@ import { BsPlusLg, BsCheckCircleFill } from "react-icons/bs";
 
 function CreateModal({ isOpen }) {
 
-  if (isOpen) {
+    if (isOpen) {
 
-    return (
-      <>
-        <GenericModal 
-          icon={<BsCheckCircleFill />}
-          title="Template criado com sucesso!"
-          description="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
-          actions={[
-            <Button icon={<FiHome />} text="Voltar ao início" variant="secondary" />,
-            <Button icon={<BsPlusLg />} text="Criar outro template" />
-          ]}
-        />
-      </>
-    );
-  }
+        return (
+            <>
+                <GenericModal
+                    icon={<BsCheckCircleFill />}
+                    title="Template criado com sucesso!"
+                    description="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+                    actions={[
+                        <Button icon={<FiHome />} text="Voltar ao início" variant="secondary" />,
+                        <Button icon={<BsPlusLg />} text="Criar outro template" />
+                    ]}
+                />
+            </>
+        );
+    }
 }
 
 export default CreateModal;
