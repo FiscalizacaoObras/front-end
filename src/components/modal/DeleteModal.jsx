@@ -3,7 +3,7 @@ import Button from "../ui/Button";
 import GenericModal from "../ui/GenericModal";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 
-function Delete({ isOpen }) {
+function DeleteModal({ isOpen, isClose }) {
 
     if (isOpen) {
 
@@ -17,6 +17,7 @@ function Delete({ isOpen }) {
                         <Button text="Cancelar" variant="secondary" />,
                         <Button text="Continuar" variant="primary" />
                     ]}
+                    onClose={isClose}
                 />
             </>
         );
@@ -25,4 +26,4 @@ function Delete({ isOpen }) {
     return null;
 }
 
-export default Delete;
+export default DeleteModal;

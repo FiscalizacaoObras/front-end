@@ -5,7 +5,7 @@ import Button from "../components/ui/Button";
 import Upload from "../components/ui/Upload";
 import TitlePage from "../components/layout/TitlePage";
 import CreateModal from "../components/modal/CreateModal";
-import Delete from "../components/modal/Delete";
+import Delete from "../components/modal/DeleteModal";
 
 //import images
 import l1img from "../assets/l1.jpg"
@@ -161,7 +161,7 @@ function Create() {
                                         </div>
                                         
                                     </div>
-                                    <CreateModal isOpen={showModal}/>
+                                    <CreateModal isOpen={showModal} isClose={() => setShowModal(false)}/>
                                     <Delete isOpen={showModalDelete}/>
                                     {!openMenuList && (
                                         <div className="bg-white rounded-lg shadow-lg w-40 h-40  mb-2 mt-2 p-4 flex flex-col gap-4">

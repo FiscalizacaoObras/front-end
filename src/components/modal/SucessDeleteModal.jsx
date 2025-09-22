@@ -5,7 +5,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { FiHome } from "react-icons/fi";
 
-function SucessDelete({ isOpen }) {
+function SucessDelete({ isOpen, isClose }) {
 
     if (isOpen) {
 
@@ -18,6 +18,7 @@ function SucessDelete({ isOpen }) {
                     actions={[
                         <Button icon={<FiHome />} text="Voltar ao início" />
                     ]}
+                    onClose={isClose}
                 />
             </>
         );

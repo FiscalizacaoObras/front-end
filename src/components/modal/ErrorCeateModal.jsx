@@ -4,7 +4,7 @@ import GenericModal from "../ui/GenericModal";
 import { BsExclamationCircleFill } from "react-icons/bs";
 import { FiRotateCw } from "react-icons/fi";
 
-function ErrorCeate({ isOpen }) {
+function ErrorCeate({ isOpen, isClose }) {
 
     if (isOpen) {
 
@@ -17,6 +17,7 @@ function ErrorCeate({ isOpen }) {
                     actions={[
                         <Button icon={<FiRotateCw />} text="Tentar novamente" />
                     ]}
+                    onClose={isClose}
                 />
             </>
         );

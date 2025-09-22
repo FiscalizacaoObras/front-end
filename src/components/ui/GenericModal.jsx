@@ -1,13 +1,13 @@
 import React from "react";
 import { IoClose } from "react-icons/io5";
 
-function GenericModal({ icon, title, description, actions }) {
+function GenericModal({ icon, title, description, actions, onClose }) {
 
     return (
         <>
-            <div className="fixed flex flex-col w-[90vw] max-w-[715px] h-[80vh] max-h-[355px] overflow-hidden gap-3 px-4 pt-4 pb-8 rounded-3xl shadow-md">
+            <div className="fixed inset-0 m-auto flex flex-col bg-[#F8F9FA] w-[90vw] max-w-[715px] h-[80vh] max-h-[355px] overflow-hidden gap-3 px-4 pt-4 pb-8 rounded-3xl shadow-md">
                 <div className="flex justify-end ">
-                    <button className="cursor-pointer">
+                    <button className="cursor-pointer" onClick={onClose}>
                         <IoClose className="text-[24px]" />
                     </button>
                 </div>

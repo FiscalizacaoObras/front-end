@@ -1,10 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import GenericModal from "../ui/GenericModal.jsx";
 import Button from "../ui/Button.jsx";
 import { FiHome } from "react-icons/fi";
 import { BsPlusLg, BsCheckCircleFill } from "react-icons/bs";
 
-function CreateModal({ isOpen }) {
+function CreateModal({ isOpen, isClose }) {
 
     if (isOpen) {
 
@@ -18,10 +19,13 @@ function CreateModal({ isOpen }) {
                         <Button icon={<FiHome />} text="Voltar ao início" variant="secondary" />,
                         <Button icon={<BsPlusLg />} text="Criar outro template" />
                     ]}
+                    onClose={isClose} 
                 />
             </>
         );
     }
+
+    return null;
 }
 
 export default CreateModal;
