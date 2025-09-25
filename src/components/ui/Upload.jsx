@@ -44,7 +44,7 @@ function Upload() {
     };
 
     return (
-        <div className="flex flex-col gap-5 p-10 w-3/4 h-1/2 mx-auto shadow-2xl rounded-2xl">
+        <div className="flex flex-col gap-5 p-10 w-[90%] h-full pb-[15%] bg-white mx-auto shadow-md rounded-lg">
             <div className="flex flex-col items-start gap-2.5">
                 <h2 className="text-2xl font-semibold text-gray-800 text-center">Upload Arquivo</h2>
                 <p>Lorem ipsum.... Descrição do que deve ser esse upload</p>

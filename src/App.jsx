@@ -4,14 +4,14 @@ import AppRoutes from "./routes/Routes";
 
 function App() {
 
-  return (
-    <>
-      <div className="flex w-screen h-screen">
-        <Sidebar />
-        <AppRoutes />
-      </div> 
-    </>
-  );
+    return (
+        <div className="flex w-screen h-screen">
+            <Sidebar />
+            <div className="flex w-[85%] h-full">
+                <AppRoutes />
+            </div>
+        </div>
+    );
 }
 
 export default App;

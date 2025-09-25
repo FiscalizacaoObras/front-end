@@ -60,7 +60,7 @@ function Create() {
                 </div>
                 <div className="w-full">
                     {step === 1 && (
-                        <div className="flex flex-col w-full h-full">
+                        <div className="flex flex-col mx-auto w-[90%] h-full">
                             <div className="bg-white align-top w-full p-6 rounded-lg shadow-md relative">
                             <h2 className="text-lg font-semibold mb-1">Novo Template</h2>
                             <p className="text-gray-500 text-sm mb-6">
@@ -89,7 +89,7 @@ function Create() {
                                 />
                             </div>
 
-                            <div className="flex justify-end">
+                            <div className=" flex justify-end mt-4">
                                 <Button text="Adicionar"
                                         onClick={nextStep}
                                 />
@@ -98,21 +98,21 @@ function Create() {
                         </div>)}
                     {step === 2 && (
                         <>
-                            <div className="flex w-full h-full bg-gray-100">
-                                <div className="flex">
-                                    <FaArrowLeft className="mr-3 mt-3 cursor-pointer" size={30}
-                                    onClick={prevStep}
-                                    />
-                                </div>
+                            <div className="flex flex-col w-full h-full bg-gray-100">
                                 <div className="w-full">
-                                    <div className="mt-20 flex flex-col gap-y-5">
+                                    <div className="flex flex-col gap-y-5">
                                         <Upload onFileChange={(file) => setUploadedImage(URL.createObjectURL(file))}/>
-                                        <div className="ml-165">
-                                            <Button text="Adicionar"
+                                        <div className="flex justify-end mr-[5%]">
+                                            <Button text="Adicionar "
                                                 onClick={nextStep}
                                             />
                                         </div>
                                     </div>
+                                </div>
+                                  <div className="flex justify-end">
+                                    <FaArrowLeft className="mr-3 mt-3 cursor-pointer" size={30}
+                                    onClick={prevStep}
+                                    />
                                 </div>
                             </div>
                         </>
