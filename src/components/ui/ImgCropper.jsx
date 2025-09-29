@@ -1,48 +1,50 @@
 import React, { useRef, useState } from "react";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
+import InputFile from "./InputFile";
 
-function ImgCropper(){
+function ImgCropper() {
     const cropperRef = useRef(null);
     const [Img, setImg] = useState("");
     const [croppImg, setCroppImg] = useState("");
 
-    const onImageChange = (e) => {
-        if(e.target.files && e.target.files > 0){
-            const file = e.target.files[0]
-            const reader = new FileReader()
+    const onCrop = () => {
+        const cropper = cropperRef.current?.cropper; 
 
-            reader.onload = () => {
-                setImg(reader.result)
-            }
-            reader.readAsDataURL(file);
+        if (cropper) {
+            const data = cropper.getData();
+            setCroppImg(data);
         }
-    }
+    };
 
-    return(
+    return (
         <>
-        <div className="p-5">
-           <h2>React Cropper</h2>
-           <input 
-            type='file'
-            accept='image/*'
-            onChange={onImageChange}
-            className="mb-5"
-           />
+            <div className="p-5">
+                <h2>React Cropper</h2>
+                <div className="flex justify-center mb-4">
+                    <InputFile text="Escolha uma imagem" onFileChange={setImg} />
+                </div>
 
-           {Img &&(
-            <>
-                <Cropper
-                    src={Img}
-                    className="h-96 w-full"
-                    aspectRatio={16/9}
-                    guides={true}
-                    ref={cropperRef}
-                    viewMode={1}
-                />
-            </>
-           )}
-        </div>
+                {Img && (
+                    <>
+                        <Cropper
+                            src={Img}
+                            className="h-96 w-full"
+                            aspectRatio={16 / 9}
+                            guides={true}
+                            ref={cropperRef}
+                            viewMode={1}
+                            crop={onCrop}
+                        />
+                        {croppImg && (
+                            <div className="mt-4">
+                                <h3>Coordenadas em tempo real:</h3>
+                                <pre>{JSON.stringify(croppImg, null, 2)}</pre>
+                            </div>
+                        )}
+                    </>
+                )}
+            </div>
         </>
     );
 
