@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import InputFile from "./InputFile";
+import croppsJson from "../../data/Cropps.json";
 
 function ImgCropper() {
     const cropperRef = useRef(null);
