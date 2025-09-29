@@ -31,7 +31,8 @@ function ImgCropper() {
                             src={Img}
                             className="h-96 w-full"
                             aspectRatio={16 / 9}
-                            guides={true}
+                            guides={false}
+                            zoomOnWheel={false}
                             ref={cropperRef}
                             viewMode={1}
                             crop={onCrop}
