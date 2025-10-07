@@ -26,7 +26,7 @@ function Sidebar(){
     const MenuTemplates = [
         {
             icons:<FiFileText size={iconSize}/>,
-            to:"/view",
+            to:"/visualizar",
             label:'Visualizar'
         },
         {
@@ -94,7 +94,7 @@ function Sidebar(){
                 )}
                 {MenuTemplates.map((item,index)=>{
                     return(
-                        <li key={index} className="px-3 py-2 hover:bg-rose-500/25 rounded-md duration-300 cursor-pointer">
+                        <li key={index} className="px-3 py-2 hover:bg-rose-500/25 duration-300 cursor-pointer">
                             <Link to={item.to} className="flex items-center gap-2">
                                 <div>{item.icons}</div>
                                 <p className={`${!open && 'w-0 translate-x-24'} duration-500 overflow-hidden`}>{item.label}</p>
