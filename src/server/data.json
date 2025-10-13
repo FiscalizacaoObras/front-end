@@ -1,28 +1,20 @@
 {
   "template": [
     {
-      "name": "",
-      "description": "",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "name": "funcione",
+      "description": "sem descrição",
+      "x": 160,
+      "y": 309,
+      "width": 490,
+      "height": 188
     },
     {
-      "name": "Campo A",
-      "description": "Área principal",
-      "x": 100,
-      "y": 200,
-      "width": 300,
-      "height": 150
-    },
-    {
-      "name": "TEmpla",
-      "description": "Área princusivsbisvdsvsadbiçvsabuiipal",
-      "x": 100,
-      "y": 200,
-      "width": 300,
-      "height": 150
+      "name": "código",
+      "description": "sem descrição",
+      "x": 1026,
+      "y": 293,
+      "width": 490,
+      "height": 188
     }
   ]
 }

@@ -28,24 +28,27 @@ app.get("/template", async (req, res) => {
 
 // POST /template → adiciona um novo template
 app.post("/template", async (req, res) => {
-    const { name, description, x, y, width, height } = req.body;
+    const { template } = req.body;
+    console.log("Dados recebidos do cliente:", template);
 
     // validação básica
-    if (name === undefined || description === undefined) {
-        return res.status(400).json({ error: "Campos obrigatórios: name e description" });
+    if (!Array.isArray(template)) {
+        return res.status(400).json({ error: "O corpo da requisição deve conter um array de templates." });
+    }
+    for (let item of template) {
+        const { name, description, x, y, width, height } = item;
+        
+        // Verifica se os campos obrigatórios existem e são válidos
+        if (!name || !description || isNaN(x) || isNaN(y) || isNaN(width) || isNaN(height)) {
+            return res.status(400).json({
+                error: "Cada template precisa conter name, description, x, y, width e height válidos."
+            });
+        }
     }
 
     const data = await readData();
-    const novoItem = {
-        name,
-        description,
-        x: Number(x) || 0,
-        y: Number(y) || 0,
-        width: Number(width) || 0,
-        height: Number(height) || 0
-    };
 
-    data.template.push(novoItem);
+    data.template = template;
     await writeData(data);
 
     res.status(201).json(novoItem);
