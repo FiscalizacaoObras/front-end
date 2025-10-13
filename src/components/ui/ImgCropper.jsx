@@ -12,6 +12,7 @@ function ImgCropper() {
     const onCrop = () => {
         const cropper = cropperRef.current?.cropper; 
 
+        
         if (cropper) {
             const data = cropper.getData();
             const coordCropp = {
