@@ -1,0 +1,28 @@
+{
+  "template": [
+    {
+      "name": "",
+      "description": "",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    {
+      "name": "Campo A",
+      "description": "Área principal",
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 150
+    },
+    {
+      "name": "TEmpla",
+      "description": "Área princusivsbisvdsvsadbiçvsabuiipal",
+      "x": 100,
+      "y": 200,
+      "width": 300,
+      "height": 150
+    }
+  ]
+}
