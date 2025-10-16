@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Button from "./Button";
 import { GoPlus } from "react-icons/go";
 import l1img from "../../assets/l1.jpg";
+import relatorio from "../../assets/relatorio.jpeg";
 
 //import cropper
 import { Cropper } from "react-cropper";
@@ -33,23 +34,27 @@ function CreateBox({ onCropChange, coordinates, onSaveField }) {
     };
 
     return (
-        <div className="bg-white h-[70vh] rounded-md shadow-lg p-4 flex flex-col gap-1 justify-between">
+        <div className="bg-white h-[80vh] rounded-md shadow-lg p-4 flex flex-col gap-1 justify-between">
             <div className="flex flex-col gap-5">
                 <h2 className="text-xl font-bold">Nome do Template</h2>
                 <p>Selecione o campo que deseja adicionar no template:</p>
             </div>
-            <div className="bg-cover bg-center w-full h-50">
+            <div className="w-full flex justify-center items-center overflow-hidden">
+
                 <Cropper
-                    src={l1img}
-                    className="bg-cover bg-center h-50 w-full"
+                    src={relatorio}
+                    className=""
                     aspectRatio={NaN}
                     guides={true}
                     zoomOnWheel={false}
                     ref={cropperRef}
-                    viewMode={3}
+                    viewMode={0}
                     crop={onCrop}
+                    style={{ maxHeight: "80vh" }}
+
                 />
             </div>
+
             <div className="flex justify-end">
                 <Button
                     icon={<GoPlus size={20} />}
