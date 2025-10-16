@@ -31,7 +31,7 @@ function SelectBox({
             }));
             console.log("Enviando dados para o servidor:", updatedCoordinates);
 
-            const response = await axios.post('http://localhost:3000/template', { template: updatedCoordinates });
+            const response = await axios.post('http://localhost:3000/templates', updatedCoordinates );
             console.log("Dados salvos com sucesso:", response.data);
         } catch(error){
             console.error("Erro ao salvar os dados:",  error.response ? error.response.data : error.message);

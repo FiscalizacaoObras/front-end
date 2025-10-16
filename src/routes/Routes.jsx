@@ -4,7 +4,7 @@ import View from "../pages/View.jsx"
 import Login from "../pages/Login.jsx";
 import Register from "../pages/Cad.jsx";
 import Create from "../pages/Create.jsx";
-import ImgCropper from "../components/ui/ImgCropper.jsx";
+
 import NewField from "../components/modal/NewField.jsx";
 import UploadDocument from "../pages/UploadDocument.jsx";
 
@@ -16,7 +16,6 @@ function AppRoutes() {
       <Route path="/criar" element={<Create />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/croppr" element={<ImgCropper />} />
       <Route path="/modal" element={<NewField isOpen={true} />} />
       <Route path="/enviar" element={<UploadDocument />} />
     </Routes>

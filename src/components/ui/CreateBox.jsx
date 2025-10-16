@@ -5,7 +5,7 @@ import l1img from "../../assets/l1.jpg";
 
 //import cropper
 import { Cropper } from "react-cropper";
-import "cropperjs/dist/cropper.css";
+import "react-cropper/node_modules/cropperjs/dist/cropper.css";
 
 // import modal
 import NewField from "../../components/modal/NewField";
