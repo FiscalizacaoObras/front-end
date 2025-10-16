@@ -138,7 +138,10 @@ function Create() {
                                         prevStep={prevStep}
                                         setStep={setStep}
                                         showModal={showModal}
-                                        setShowModal={setShowModal} />
+                                        setShowModal={setShowModal}
+                                        templateName={nome}
+                                        templateDescription={descricao} />
+                                        
                                 </div>
 
                             </div>

@@ -17,26 +17,37 @@ function SelectBox({
     setStep,
     showModal,
     setShowModal,
-    allCoordinates = []
+    allCoordinates = [],
+    templateName,
+    templateDescription
 }) {
     const saveCoordinates = async () => {
         try {
-            const updatedCoordinates = allCoordinates.map(coord => ({
-                name: coord.label || "sem nome ",
-                description: coord.description || "sem descrição",
-                x: coord.x || 0,
-                y: coord.y || 0,
-                width: coord.width || 0,
-                height: coord.height || 0
-            }));
-            console.log("Enviando dados para o servidor:", updatedCoordinates);
+            if (!allCoordinates.length) return;
+            console.log(templateName);
+            console.log(templateDescription);
 
-            const response = await axios.post('http://localhost:3000/templates', updatedCoordinates );
+            const templatePayload = {
+                name: templateName || "Template sem nome",
+                description: templateDescription || "Sem descrição",
+                fields: allCoordinates.map(coord => ({
+                    name: coord.label || "sem nome",
+                    x: Number(coord.x || 0),
+                    y: Number(coord.y || 0),
+                    width: Number(coord.width || 0),
+                    height: Number(coord.height || 0)
+                }))
+            };
+
+            console.log("Enviando dados para o servidor:", templatePayload);
+
+            const response = await axios.post('http://localhost:3000/templates', templatePayload);
             console.log("Dados salvos com sucesso:", response.data);
-        } catch(error){
-            console.error("Erro ao salvar os dados:",  error.response ? error.response.data : error.message);
+        } catch (error) {
+            console.error("Erro ao salvar os dados:", error.response ? error.response.data : error.message);
         }
     };
+
     return (
         <div className="bg-white rounded-md shadow-md mb-2 mt-2 p-4 flex flex-col items-center gap-4 flex-1">
             <h1 className="text-xl font-bold">Caixa de Seleção</h1>
