@@ -3,54 +3,25 @@ import { InboxOutlined, DeleteOutlined, CheckOutlined } from '@ant-design/icons'
 import { FiUploadCloud } from "react-icons/fi";
 import { message, Input, Tooltip, Checkbox, Button } from 'antd';
 
-function Upload() {
-    const [pdfList, setPdfList] = useState([]);
+function Upload({ onFileChange }) {
     const [UploadBig, setUploadBig] = useState(true);
-    const [nomeSelecao, setNomeSelecao] = useState(() => {
-        return localStorage.getItem('nomeSelecao') || '';
-    });
-    const [selecoesSalvas, setSelecoesSalvas] = useState(() => {
-        const saved = localStorage.getItem('selecoesSalvas');
-        return saved ? JSON.parse(saved) : [];
-    });
-
-    useEffect(() => {
-        localStorage.setItem('nomeSelecao', nomeSelecao);
-        localStorage.setItem('selecoesSalvas', JSON.stringify(selecoesSalvas));
-    }, [nomeSelecao, selecoesSalvas]);
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files);
+        const validTypes = ['image/png', 'image/jpeg'];
+        const validFiles = files.filter(file => validTypes.includes(file.type));
 
-        const newPDFs = files
-            .filter((file) => file.type === 'application/pdf')
-            .map((file) => ({
-                url: URL.createObjectURL(file),
-                name: file.name,
-                size: (file.size / 1024).toFixed(2) + ' KB',
-                templateName: '',
-                description: '',
-            }));
-
-        if (newPDFs.length !== files.length) {
-            message.warning('Apenas arquivos PDF foram adicionados.');
+        if (validFiles.length !== files.length) {
+            message.warning('Apenas PNG, JPG e PDF são permitidos.');
         }
 
-        setPdfList((prev) => [...prev, ...newPDFs]);
-    };
-    const handleChange = (index, field, value) => {
-        const updatedList = [...pdfList];
-        updatedList[index][field] = value;
-        setPdfList(updatedList);
-    };
-
-    useEffect(() => {
-        if (pdfList.length > 0) {
+        const file = validFiles[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            onFileChange(url);
             setUploadBig(false);
-        } else {
-            setUploadBig(true);
         }
-    }, [pdfList]);
+    };
 
     return (
         <>
@@ -68,11 +39,11 @@ function Upload() {
                         <p className="mt-2">
                             <span className="text-indigo-800 font-bold">Clique em Upload</span> ou arraste e solte um arquivo
                         </p>
-                        <p>PNG, PDF, JPG ou DOCX</p>
+                        <p>PNG, PDF ou JPG</p>
                         <input
                             id="pdf-upload"
                             type="file"
-                            accept="application/pdf"
+                            accept="image/png, image/jpeg, application/pdf"
                             onChange={handleFileChange}
                             className="hidden"
                             multiple
@@ -92,7 +63,7 @@ function Upload() {
                                 <input
                                     id="pdf-upload"
                                     type="file"
-                                    accept="application/pdf"
+                                    accept="image/png, image/jpeg, application/pdf"
                                     onChange={handleFileChange}
                                     className="hidden"
                                     multiple

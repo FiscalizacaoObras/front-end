@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Upload from "../components/ui/Upload";
-import CreateBox from "../components/ui/CreateBox";
 import SelectBox from "../components/ui/SelectBox";
 import TitlePage from "../components/layout/TitlePage";
 import ViewFields from "../components/ui/ViewFields";
 
 function UploadDocument() {
+    const [selectedImage, setSelectedImage] = useState(null);
+
     return (
         <>
             <div className="flex flex-col w-full h-full">
                 <TitlePage Title="Relatório de Obras" />
-                <div className="flex flex-row h-full w-full p-10 justify-between">
-                    <div className="w-[50%] h-full justify-between">
+                
+                <div className="flex flex-col lg:flex-row w-full h-full p-6 lg:p-10 gap-6">
+                    <div className="flex flex-col w-full lg:w-1/2 h-auto lg:h-full justify-between gap-6">
                         <div className="h-[40%]">
-                            <Upload />
+                            <Upload onFileChange={setSelectedImage} />
                         </div>
                         <div>
-                            <ViewFields />
+                            <ViewFields imageUrl={selectedImage}/>
                         </div>
                     </div>
-                    <div className="w-[45%]">
+                    <div className="w-full lg:w-1/2 h-auto">
                         <SelectBox />
                     </div>
                 </div>
