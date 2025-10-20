@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import ViewTemplates from "../pages/ViewTemplates.jsx";
-import View from "../pages/View.jsx"
+import ShowCropp from "../components/layout/ShowCropp.jsx"
 import Login from "../pages/Login.jsx";
 import Register from "../pages/Cad.jsx";
 import Create from "../pages/Create.jsx";
@@ -15,9 +15,10 @@ function AppRoutes() {
       <Route path="/visualizar" element={<ViewTemplates />} />
       <Route path="/criar" element={<Create />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/ver" element={<ShowCropp />} />
       <Route path="/register" element={<Register />} />
       <Route path="/modal" element={<NewField isOpen={true} />} />
-      <Route path="/enviar" element={<UploadDocument />} />
+      <Route path="/enviar/:id" element={<UploadDocument />} />
     </Routes>
   );
 }
