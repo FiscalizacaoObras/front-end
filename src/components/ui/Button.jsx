@@ -1,4 +1,4 @@
-function Button({ icon, text, variant = 'primary', onClick }) {
+function Button({ icon, text, variant = 'primary', onClick, disabled = false }) {
     let variantClass = "";
 
     if (variant === "primary") {
@@ -10,8 +10,12 @@ function Button({ icon, text, variant = 'primary', onClick }) {
 
     return (
         <button
-            className={`flex items-center gap-0.5 p-2 rounded-lg cursor-pointer ${variantClass}`}
-            onClick={onClick}
+            className={`flex items-center gap-0.5 p-2 rounded-lg border transition
+                ${variantClass}
+                ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer hover:opacity-90"}
+            `}
+            onClick={!disabled ? onClick : undefined}
+            disabled={disabled}
         >
             {icon && <span>{icon}</span>}
             <span>{text}</span>

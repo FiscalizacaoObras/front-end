@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import relatorio from "../../assets/relatorio.jpeg";
 
-function ViewFields({ imageUrl, template, selectedFields = [], hoveredFieldId, setHoveredFieldId }) {
+function ViewFields({ imageUrl, template, selectedFields = [], setHoveredFieldId }) {
   const imgRef = useRef(null);
   const [scale, setScale] = useState({ scaleX: 1, scaleY: 1 });
 

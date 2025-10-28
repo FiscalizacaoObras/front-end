@@ -11,7 +11,7 @@ import "react-cropper/node_modules/cropperjs/dist/cropper.css";
 // import modal
 import NewField from "../../components/modal/NewField";
 
-function CreateBox({ onCropChange, coordinates, onSaveField }) {
+function CreateBox({ onCropChange, coordinates, onSaveField, image_cropp, name_template }) {
     const cropperRef = useRef(null);
     const [showModal, setShowModal] = useState(false);
 
@@ -36,13 +36,13 @@ function CreateBox({ onCropChange, coordinates, onSaveField }) {
     return (
         <div className="bg-white h-[80vh] rounded-md shadow-lg p-4 flex flex-col gap-1 justify-between">
             <div className="flex flex-col gap-5">
-                <h2 className="text-xl font-bold">Nome do Template</h2>
+                <h2 className="text-xl font-bold">Nome do Template: {name_template}</h2>
                 <p>Selecione o campo que deseja adicionar no template:</p>
             </div>
             <div className="w-full flex justify-center items-center overflow-hidden">
 
                 <Cropper
-                    src={relatorio}
+                    src={image_cropp}
                     className=""
                     aspectRatio={NaN}
                     guides={true}

@@ -39,7 +39,7 @@ function Create() {
     const handleSaveField = (fieldData) => {
         setAllCoordinates((prev) => [...prev, fieldData]);
     };
-    
+
 
     const AddList = [
         { label: 'Título 1' },
@@ -103,6 +103,7 @@ function Create() {
                                 <div className=" flex justify-end mt-4">
                                     <Button text="Adicionar"
                                         onClick={nextStep}
+                                        disabled={!nome.trim() || !descricao.trim()}
                                     />
                                 </div>
                             </div>
@@ -114,8 +115,13 @@ function Create() {
                                     <div className="flex flex-col gap-y-5">
                                         <Upload onFileChange={(file) => setUploadedImage(URL.createObjectURL(file))} />
                                         <div className="flex justify-between px-[5%]">
-                                            <Button text="Voltar" variant="secondary" onClick={prevStep} />
-                                            <Button text="Adicionar" onClick={nextStep} />
+                                            <Button
+                                                text="Voltar" variant="secondary" onClick={prevStep}
+                                            />
+                                            <Button
+                                                text="Adicionar" onClick={nextStep}
+                                                disabled={!uploadedImage}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -126,9 +132,13 @@ function Create() {
                         <div className="w-full h-full">
                             <div className="flex flex-row justify-between mx-15">
                                 <div className="w-[60%]">
-                                    <CreateBox onCropChange={setCoordinates}
+                                    <CreateBox
+                                        name_template={nome} 
+                                        onCropChange={setCoordinates}
                                         coordinates={coordinates}
-                                        onSaveField={handleSaveField} />
+                                        onSaveField={handleSaveField}
+                                        image_cropp={uploadedImage}
+                                    />
                                 </div>
                                 <div className="w-[35%] flex flex-col gap-5">
                                     <CoordinateBox coordinates={coordinates} onChange={setCoordinates} />
@@ -140,8 +150,9 @@ function Create() {
                                         showModal={showModal}
                                         setShowModal={setShowModal}
                                         templateName={nome}
-                                        templateDescription={descricao} />
-                                        
+                                        templateDescription={descricao}
+                                    />
+
                                 </div>
 
                             </div>

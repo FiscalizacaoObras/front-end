@@ -33,7 +33,7 @@ function Upload({ onFileChange }) {
             setFileUrl(url);
             setUploadBig(false);
 
-            if (onFileChange) onFileChange({ file, url });
+            if (onFileChange) onFileChange(file);
         }
     };
 
