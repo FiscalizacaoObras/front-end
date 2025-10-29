@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { PiTagSimple } from "react-icons/pi";
 import Button from "./Button";
 
 //import server
-import axios from 'axios';
+import {createTemplate} from "../../services/api";
 
 //import modal
 import CreateModal from "../modal/CreateModal";
@@ -41,7 +40,7 @@ function SelectBox({
 
             console.log("Enviando dados para o servidor:", templatePayload);
 
-            const response = await axios.post('http://localhost:3000/templates', templatePayload);
+            const response = await createTemplate(templatePayload);
             console.log("Dados salvos com sucesso:", response.data);
 
             setShowModal(true);

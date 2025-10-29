@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+//import server
+import {getTemplate} from "../../services/api";
 
 function Template({ cardsOnly = false }) {
     const [templates, setTemplates] = useState([]);
@@ -9,8 +11,8 @@ function Template({ cardsOnly = false }) {
     useEffect(() => {
         const fetchTemplates = async () => {
             try {
-                const res = await axios.get("http://localhost:3000/templates");
-                setTemplates(res.data);
+                const res = await getTemplate();
+                setTemplates(res);
             } catch (error) {
                 console.error("Erro ao carregar templates:", error);
             } finally {

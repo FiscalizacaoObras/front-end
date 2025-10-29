@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { PiTagSimple } from "react-icons/pi";
 import Button from "./Button";
-import axios from "axios";
+
+//import server
+import {getTemplateById} from "../../services/api";
+
 
 function SelectBox2({
     prevStep,
@@ -17,8 +20,8 @@ function SelectBox2({
     useEffect(() => {
         const fetchTemplate = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/templates/${templateId}`);
-                setTemplate(res.data);
+                const res = await getTemplateById(templateId);
+                setTemplate(res);
             } catch (err) {
                 console.error("Erro ao buscar template:", err);
             } finally {

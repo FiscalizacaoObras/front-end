@@ -1,9 +1,14 @@
 import axios from "axios";
-const url = process.env.REACT_APP_API_URL;
+const url = import.meta.env.VITE_API_URL;
 
 export async function getTemplate() {
     const response = await axios.get(`${url}/templates`);
     return response.data;
+}
+
+export async function getTemplateById(templateId) {
+  const response = await axios.get(`${url}/templates/${templateId}`);
+  return response.data;
 }
 
 export async function createTemplate(payload) {

@@ -6,6 +6,9 @@ import ViewFields from "../components/ui/ViewFields";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+//import server
+import {getTemplateById} from "../services/api";
+
 function UploadDocument() {
     const { id } = useParams();
     const [selectedImage, setSelectedImage] = useState(null);
@@ -15,14 +18,10 @@ function UploadDocument() {
     const [hoveredFieldId, setHoveredFieldId] = useState(null);
 
     useEffect(() => {
-        console.log("ID recebido pela rota:", id);
-    }, [id]);
-
-    useEffect(() => {
         const fetchTemplate = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/templates/${id}`);
-                setTemplate(res.data);
+                const res = await getTemplateById(id);
+                setTemplate(res);
             } catch (error) {
                 console.error("Erro ao carregar template:", error);
             } finally {
@@ -40,7 +39,7 @@ function UploadDocument() {
     if (!template) {
         return <p className="text-center mt-10 text-red-500">Template não encontrado.</p>;
     }
-
+    
     return (
         <div className="flex flex-col w-full h-full">
             <TitlePage Title="Ver Templates" />
