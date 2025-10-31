@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-//import server
-import {getTemplate} from "../../services/api";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
-function Template({ cardsOnly = false }) {
+//import server
+import { getTemplate } from "../../services/api";
+
+function Template({ cardsOnly = false, onOpenDeleteModal }) {
     const [templates, setTemplates] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -20,6 +22,15 @@ function Template({ cardsOnly = false }) {
             }
         };
         fetchTemplates();
+    }, []);
+
+    useEffect(() => {
+        const handleDeleted = (e) => {
+            const deletedId = e.detail;
+            setTemplates((prev) => prev.filter((t) => t.id !== deletedId));
+        };
+        window.addEventListener("templateDeleted", handleDeleted);
+        return () => window.removeEventListener("templateDeleted", handleDeleted);
     }, []);
 
     if (loading) {
@@ -53,13 +64,20 @@ function Template({ cardsOnly = false }) {
                         Descrição: {template.description || "Sem descrição"}
                     </p>
                 </div>
-
-                <Link to={`/enviar/${template.id}`}>
-                    <p className="uppercase text-[#602E31] font-medium underline hover:text-[#401c1e] transition-colors">
-                        Ir para template
-                    </p>
-                </Link>
+                <div className="flex justify-between items-center">
+                    <Link to={`/enviar/${template.id}`}>
+                        <p className="uppercase text-[#602E31] font-medium underline hover:text-[#401c1e] transition-colors">
+                            Ir para template
+                        </p>
+                    </Link>
+                    <RiDeleteBin6Fill
+                        size={18}
+                        className="cursor-pointer text-[#602E31] hover:text-[#1a1a1a] transition-colors"
+                        onClick={() => onOpenDeleteModal(template)}
+                    />
+                </div>
             </div>
+
         </div>
     ));
 
