@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import l1img from "../../assets/l1.jpg";
 
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
@@ -46,7 +47,13 @@ function Template({ cardsOnly = false, onOpenDeleteModal }) {
             key={template.id}
             className="w-full sm:w-[40vh] h-[40vh] flex flex-col items-center justify-start border-2 border-[#602E31] rounded-lg bg-white hover:shadow-md transition-all duration-200"
         >
-            <div className="flex h-[45%] w-full bg-[#602E31] rounded-t-md" />
+            <div className="h-[45%] w-full rounded-t-md overflow-hidden">
+                <img
+                    src={template.image_url || l1img}
+                    alt={template.name}
+                    className="w-full h-full object-cover"
+                />
+            </div>
 
             <div className="p-4 flex flex-col justify-between h-[55%] w-full">
                 <div>

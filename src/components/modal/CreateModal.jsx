@@ -1,5 +1,3 @@
-import React from "react";
-import { useState } from "react";
 import GenericModal from "../ui/GenericModal.jsx";
 import Button from "../ui/Button.jsx";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +17,6 @@ function CreateModal({ isOpen, isClose, setStep, resetForm }) {
                     description="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
                     actions={[
                         <Button icon={<FiHome />} text="Voltar ao início" variant="secondary"  onClick={() => {
-                            setStep(1);
                             isClose();
                             navigate("/");
                         }}/>,

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { CiMenuKebab } from "react-icons/ci";
+import { useState, useEffect } from "react";
 import { PiTagSimple } from "react-icons/pi";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 //import server
 import {getTemplateById} from "../../services/api";
@@ -14,6 +14,8 @@ function SelectBox2({
     setSelectedFields,
     hoveredFieldId,
 }) {
+    const navigate = useNavigate();
+
     const [template, setTemplate] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -75,17 +77,13 @@ function SelectBox2({
                             <p className="text-gray-400 text-sm pl-2">
                                 x: {field.x} y: {field.y} w: {field.width} h: {field.height}
                             </p>
-                            <CiMenuKebab
-                                size={18}
-                                className="ml-auto cursor-pointer"
-                            />
                         </li>
                     ))}
                 </ul>
             )}
 
             <div className="mt-auto flex justify-end">
-                <Button text="Voltar" variant="secondary" onClick={prevStep} />
+                <Button text="Voltar" variant="secondary" onClick={() => {navigate("/");}} />
             </div>
         </div>
     );

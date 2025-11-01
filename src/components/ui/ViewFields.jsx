@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import relatorio from "../../assets/relatorio.jpeg";
 
 function ViewFields({

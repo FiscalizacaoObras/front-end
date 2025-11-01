@@ -4,7 +4,7 @@ import GenericModal from "../ui/GenericModal";
 import { BsExclamationCircleFill } from "react-icons/bs";
 import { FiRotateCw } from "react-icons/fi";
 
-function ErrorCeate({ isOpen, isClose }) {
+function ErrorCeate({ isOpen, isClose, setStep }) {
 
     if (isOpen) {
 
@@ -15,7 +15,11 @@ function ErrorCeate({ isOpen, isClose }) {
                     title="Falha ao finalizar template"
                     description="Seu template não foi finalizado, tente novamente."
                     actions={[
-                        <Button icon={<FiRotateCw />} text="Tentar novamente" />
+                        <Button icon={<FiRotateCw />} text="Tentar novamente"
+                        onClick={() => {
+                            setStep(1);
+                            isClose();
+                        }} />
                     ]}
                     onClose={isClose}
                 />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { InboxOutlined, DeleteOutlined } from '@ant-design/icons';
 import { FiUploadCloud } from "react-icons/fi";
 import { message } from 'antd';

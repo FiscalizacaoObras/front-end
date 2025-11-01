@@ -50,8 +50,8 @@ function NewField({ isOpen, isClose, onSave, currentCoordinates }) {
                                 <p className="font-medium text-[#344054]">Nome da Caixa de Seleção</p>
                             </div>
                             <div className="flex flex-row justify-between">
-                                <input type="text" placeholder='Ex: "Título"'  onChange={(e) => setFieldName(e.target.value)} className="w-[90%] p-1.5 border-2 border-gray-300 rounded-lg" />
-                                <Button text="Salvar" onClick={handleSave} disabled={!fieldName.trim()}/>
+                                <input type="text" placeholder='Ex: "Título"' onChange={(e) => setFieldName(e.target.value)} className="w-[90%] p-1.5 border-2 border-gray-300 rounded-lg" />
+                                <Button text="Salvar" onClick={handleSave} disabled={!fieldName.trim()} />
                             </div>
                         </div>
                     </div>

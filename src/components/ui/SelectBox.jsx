@@ -1,25 +1,30 @@
-import { CiMenuKebab } from "react-icons/ci";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 import { PiTagSimple } from "react-icons/pi";
 import Button from "./Button";
 
 //import server
-import {createTemplate} from "../../services/api";
+import { createTemplate } from "../../services/api";
 
 //import modal
 import CreateModal from "../modal/CreateModal";
+import ErrorCeate from "../modal/ErrorCeateModal";
 
 function SelectBox({
-    openMenuList,
-    setOpenMenuList,
     prevStep,
     setStep,
-    showModal,
-    setShowModal,
+    modalType,
+    setModalType,
     allCoordinates = [],
+    setAllCoordinates,
     templateName,
     templateDescription,
     resetForm
 }) {
+    const handleDelete = (index) => {
+        const updated = allCoordinates.filter((_, i) => i !== index);
+        setAllCoordinates(updated);
+    };
+
     const saveCoordinates = async () => {
         try {
             if (!allCoordinates.length) return;
@@ -43,9 +48,10 @@ function SelectBox({
             const response = await createTemplate(templatePayload);
             console.log("Dados salvos com sucesso:", response.data);
 
-            setShowModal(true);
+            setModalType("success");
         } catch (error) {
             console.error("Erro ao salvar os dados:", error.response ? error.response.data : error.message);
+            setModalType("error");
         }
     };
 
@@ -65,10 +71,10 @@ function SelectBox({
                                 <p className="text-lg">{coord.label}</p>
                             </div>
 
-                            <CiMenuKebab
+                            <RiDeleteBin6Fill
                                 size={18}
-                                className="ml-auto cursor-pointer"
-                                onClick={() => setOpenMenuList(!openMenuList)}
+                                className="ml-auto cursor-pointer text-[#602E31]"
+                                onClick={() => handleDelete(index)}
                             />
                         </li>
                     ))}
@@ -76,13 +82,23 @@ function SelectBox({
             )}
             <div className="mt-auto ml-auto flex gap-x-1">
                 <Button text="Voltar" variant="secondary" onClick={prevStep} />
-                <Button text="Salvar" variant="primary" onClick={saveCoordinates} />
+                <Button text="Salvar" variant="primary" disabled={allCoordinates.length === 0} onClick={saveCoordinates} />
             </div>
-            <CreateModal isOpen={showModal}
-                isClose={() => setShowModal(false)}
-                setStep={setStep}
-                resetForm={resetForm}
-            />
+            {modalType === "success" && (
+                <CreateModal
+                    isOpen={true}
+                    isClose={() => setModalType(null)}
+                    setStep={setStep}
+                    resetForm={resetForm}
+                />
+            )}
+            {modalType === "error" && (
+                <ErrorCeate
+                    isOpen={true}
+                    setStep={setStep}
+                    isClose={() => setModalType(null)}
+                />
+            )}
 
         </div>
 

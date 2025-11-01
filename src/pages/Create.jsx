@@ -5,7 +5,6 @@ import { useState } from "react";
 import Button from "../components/ui/Button";
 import Upload from "../components/ui/Upload";
 import TitlePage from "../components/layout/TitlePage";
-import CreateModal from "../components/modal/CreateModal";
 import CreateBox from "../components/ui/CreateBox";
 import SelectBox from "../components/ui/SelectBox";
 
@@ -17,7 +16,7 @@ function Create() {
     const [step, setStep] = useState(1);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
-    const [showModal, setShowModal] = useState(false);
+    const [modalType, setModalType] = useState(null);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [allCoordinates, setAllCoordinates] = useState([]);
     const [coordinates, setCoordinates] = useState({
@@ -148,12 +147,13 @@ function Create() {
                                 <div className="w-[35%] flex flex-col gap-5">
                                     <CoordinateBox coordinates={coordinates} onChange={setCoordinates} />
                                     <SelectBox allCoordinates={allCoordinates}
+                                        setAllCoordinates={setAllCoordinates}
                                         openMenuList={openMenuList}
                                         setOpenMenuList={setOpenMenuList}
                                         prevStep={prevStep}
                                         setStep={setStep}
-                                        showModal={showModal}
-                                        setShowModal={setShowModal}
+                                        modalType={modalType}
+                                        setModalType={setModalType}
                                         templateName={name}
                                         templateDescription={description}
                                         resetForm={resetForm}

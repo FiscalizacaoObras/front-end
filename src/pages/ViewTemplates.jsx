@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import { useState } from "react";
 import TitlePage from "../components/layout/TitlePage";
 import Template from "../components/ui/Template";
 import CreateTemplate from "../components/ui/CreateTemplate";
 import DeleteModal from "../components/modal/DeleteModal";
+import SucessDeleteModal from "../components/modal/SucessDeleteModal"
 import { deleteTemplate } from "../services/api";
 
 function ViewTemplates() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState(null);
 
     const handleOpenModal = (template) => {
@@ -24,6 +26,8 @@ function ViewTemplates() {
 
             setIsModalOpen(false);
             setSelectedTemplate(null);
+
+            setIsSuccessModalOpen(true);
         } catch (error) {
             console.error("Erro ao deletar template:", error);
             alert("Erro ao deletar template. Tente novamente.");
@@ -46,6 +50,10 @@ function ViewTemplates() {
                 isClose={() => setIsModalOpen(false)}
                 template={selectedTemplate}
                 onConfirm={handleConfirmDelete}
+            />
+            <SucessDeleteModal
+                isOpen={isSuccessModalOpen}
+                isClose={() => setIsSuccessModalOpen(false)}
             />
         </div>
     );
