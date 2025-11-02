@@ -49,7 +49,7 @@ function Template({ cardsOnly = false, onOpenDeleteModal }) {
         >
             <div className="h-[45%] w-full rounded-t-md overflow-hidden">
                 <img
-                    src={template.image_url || l1img}
+                    src={template.imagePath ? `http://localhost:3000/uploads/${template.imagePath}` : l1img}
                     alt={template.name}
                     className="w-full h-full object-cover"
                 />

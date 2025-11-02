@@ -19,6 +19,7 @@ function Create() {
     const [modalType, setModalType] = useState(null);
     const [uploadedImage, setUploadedImage] = useState(null);
     const [allCoordinates, setAllCoordinates] = useState([]);
+    const [previewImage, setPreviewImage] = useState(null);
     const [coordinates, setCoordinates] = useState({
         x: 0,
         y: 0,
@@ -117,7 +118,10 @@ function Create() {
                             <div className="flex flex-col w-full h-full bg-gray-100">
                                 <div className="w-full">
                                     <div className="flex flex-col gap-y-1">
-                                        <Upload onFileChange={(file) => setUploadedImage(URL.createObjectURL(file))} />
+                                        <Upload onFileChange={(file) => {
+                                            setUploadedImage(file);                 // salva o File real
+                                            setPreviewImage(URL.createObjectURL(file)); // cria a URL só para exibir
+                                        }} />
                                         <div className="flex justify-between px-[5%]">
                                             <Button
                                                 text="Voltar" variant="secondary" onClick={prevStep}
@@ -141,7 +145,7 @@ function Create() {
                                         onCropChange={setCoordinates}
                                         coordinates={coordinates}
                                         onSaveField={handleSaveField}
-                                        image_cropp={uploadedImage}
+                                        image_cropp={previewImage}
                                     />
                                 </div>
                                 <div className="w-[35%] flex flex-col gap-5">
@@ -157,6 +161,7 @@ function Create() {
                                         templateName={name}
                                         templateDescription={description}
                                         resetForm={resetForm}
+                                        imageFile={uploadedImage}
                                     />
 
                                 </div>

@@ -18,7 +18,8 @@ function SelectBox({
     setAllCoordinates,
     templateName,
     templateDescription,
-    resetForm
+    resetForm,
+    imageFile
 }) {
     const handleDelete = (index) => {
         const updated = allCoordinates.filter((_, i) => i !== index);
@@ -29,21 +30,33 @@ function SelectBox({
         try {
             if (!allCoordinates.length) return;
 
-            const templatePayload = {
-                name: templateName || "Template sem nome",
-                description: templateDescription || "Sem descrição",
-                fields: allCoordinates.map(coord => ({
-                    name: coord.label || "sem nome",
-                    x: Number(coord.x || 0),
-                    y: Number(coord.y || 0),
-                    width: Number(coord.width || 0),
-                    height: Number(coord.height || 0)
-                }))
-            };
+            const formData = new FormData();
 
-            console.log("Enviando dados para o servidor:", templatePayload);
+            formData.append("name", templateName || "Template sem nome");
+            formData.append("description", templateDescription || "Sem descrição");
+            formData.append(
+                "fields",
+                JSON.stringify(
+                    allCoordinates.map(coord => ({
+                        name: coord.label || "sem nome",
+                        x: Number(coord.x || 0),
+                        y: Number(coord.y || 0),
+                        width: Number(coord.width || 0),
+                        height: Number(coord.height || 0)
+                    }))
+                )
+            );
+            if (imageFile) {
+                formData.append("file", imageFile);
+            }
 
-            const response = await createTemplate(templatePayload);
+            for (let pair of formData.entries()) {
+                console.log(pair[0], pair[1]);
+            }
+
+            const response = await createTemplate(formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
             console.log("Dados salvos com sucesso:", response.data);
 
             setModalType("success");
