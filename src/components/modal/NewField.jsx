@@ -53,7 +53,7 @@ function NewField({ isOpen, isClose, onSave, currentCoordinates }) {
                             </div>
                             <div className="flex flex-row justify-between">
                                 <input type="text" placeholder='Ex: "Título"' onChange={(e) => setFieldName(e.target.value)} className="w-[45%] p-1.5 border-2 border-gray-300 rounded-lg" />
-                                <input type="text" placeholder='Ex: "Quantidade de campos"' onChange={(e) => setFieldQt(e.target.value)} className="w-[45%] p-1.5 border-2 border-gray-300 rounded-lg" />
+                                <input type="text" placeholder='Ex: "Número de campos"' onChange={(e) => setFieldQt(e.target.value)} className="w-[45%] p-1.5 border-2 border-gray-300 rounded-lg" />
                                 <Button text="Salvar" onClick={handleSave} disabled={!fieldName.trim() || !fieldQt.trim()} />
                             </div>
                         </div>
