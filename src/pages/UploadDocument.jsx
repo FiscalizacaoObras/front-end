@@ -90,7 +90,7 @@ function UploadDocument() {
                                         )}
                                         <ViewFields
                                             key={selectedImage[currentIndex]}
-                                            imageUrl={selectedImage[currentIndex]}
+                                            imageUrl={URL.createObjectURL(selectedImage[currentIndex])}
                                             template={template}
                                             selectedFields={selectedFields}
                                             hoveredFieldId={hoveredFieldId}
